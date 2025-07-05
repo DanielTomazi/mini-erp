@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: mini-erp-db
+    environment:
+      POSTGRES_DB: minierp
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mini-erp-network
+
+  app:
+    build: .
+    container_name: mini-erp-app
+    environment:
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/minierp
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - mini-erp-network
+
+volumes:
+  postgres_data:
+
+networks:
+  mini-erp-network:
+    driver: bridge
