@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Formulário de Cliente - Mini ERP')">
+</head>
+<body>
+    <nav th:replace="fragments/layout :: navbar"></nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div th:replace="fragments/layout :: sidebar"></div>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">
+                        <i class="fas fa-user me-2"></i>
+                        <span th:text="${cliente.id != null ? 'Editar Cliente' : 'Novo Cliente'}"></span>
+                    </h1>
+                    <a href="/clientes" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-1"></i>Voltar
+                    </a>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <form th:action="@{/clientes}" th:object="${cliente}" method="post">
+                            <input type="hidden" th:field="*{id}">
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nome" class="form-label">Nome *</label>
+                                    <input type="text" class="form-control" th:field="*{nome}"
+                                           th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid' : ''"
+                                           placeholder="Digite o nome completo">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('nome')}"
+                                         th:errors="*{nome}"></div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" th:field="*{email}"
+                                           th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''"
+                                           placeholder="exemplo@email.com">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}"
+                                         th:errors="*{email}"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="telefone" class="form-label">Telefone</label>
+                                    <input type="tel" class="form-control" th:field="*{telefone}"
+                                           th:classappend="${#fields.hasErrors('telefone')} ? 'is-invalid' : ''"
+                                           placeholder="(11) 99999-9999">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('telefone')}"
+                                         th:errors="*{telefone}"></div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="cpf" class="form-label">CPF *</label>
+                                    <input type="text" class="form-control" th:field="*{cpf}"
+                                           th:classappend="${#fields.hasErrors('cpf')} ? 'is-invalid' : ''"
+                                           placeholder="000.000.000-00">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('cpf')}"
+                                         th:errors="*{cpf}"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <label for="endereco" class="form-label">Endereço</label>
+                                    <textarea class="form-control" th:field="*{endereco}" rows="3"
+                                              th:classappend="${#fields.hasErrors('endereco')} ? 'is-invalid' : ''"
+                                              placeholder="Digite o endereço completo"></textarea>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('endereco')}"
+                                         th:errors="*{endereco}"></div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-end gap-2">
+                                <a href="/clientes" class="btn btn-secondary">
+                                    <i class="fas fa-times me-1"></i>Cancelar
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-1"></i>
+                                    <span th:text="${cliente.id != null ? 'Atualizar' : 'Salvar'}"></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div th:replace="fragments/layout :: scripts"></div>
+</body>
+</html>
+

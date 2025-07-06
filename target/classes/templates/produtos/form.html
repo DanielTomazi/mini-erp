@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Formulário de Produto - Mini ERP')">
+</head>
+<body>
+    <nav th:replace="fragments/layout :: navbar"></nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div th:replace="fragments/layout :: sidebar"></div>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">
+                        <i class="fas fa-box me-2"></i>
+                        <span th:text="${produto.id != null ? 'Editar Produto' : 'Novo Produto'}"></span>
+                    </h1>
+                    <a href="/produtos" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-1"></i>Voltar
+                    </a>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <form th:action="@{/produtos}" th:object="${produto}" method="post">
+                            <input type="hidden" th:field="*{id}">
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nome" class="form-label">Nome *</label>
+                                    <input type="text" class="form-control" th:field="*{nome}"
+                                           th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid' : ''"
+                                           placeholder="Digite o nome do produto">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('nome')}"
+                                         th:errors="*{nome}"></div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="preco" class="form-label">Preço *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">R$</span>
+                                        <input type="number" step="0.01" min="0" class="form-control" th:field="*{preco}"
+                                               th:classappend="${#fields.hasErrors('preco')} ? 'is-invalid' : ''"
+                                               placeholder="0,00">
+                                        <div class="invalid-feedback" th:if="${#fields.hasErrors('preco')}"
+                                             th:errors="*{preco}"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="quantidadeEstoque" class="form-label">Quantidade em Estoque *</label>
+                                    <input type="number" min="0" class="form-control" th:field="*{quantidadeEstoque}"
+                                           th:classappend="${#fields.hasErrors('quantidadeEstoque')} ? 'is-invalid' : ''"
+                                           placeholder="0">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('quantidadeEstoque')}"
+                                         th:errors="*{quantidadeEstoque}"></div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="categoria" class="form-label">Categoria</label>
+                                    <input type="text" class="form-control" th:field="*{categoria}"
+                                           th:classappend="${#fields.hasErrors('categoria')} ? 'is-invalid' : ''"
+                                           placeholder="Ex: Eletrônicos, Roupas, etc.">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('categoria')}"
+                                         th:errors="*{categoria}"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <label for="descricao" class="form-label">Descrição</label>
+                                    <textarea class="form-control" th:field="*{descricao}" rows="4"
+                                              th:classappend="${#fields.hasErrors('descricao')} ? 'is-invalid' : ''"
+                                              placeholder="Digite uma descrição detalhada do produto"></textarea>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('descricao')}"
+                                         th:errors="*{descricao}"></div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-end gap-2">
+                                <a href="/produtos" class="btn btn-secondary">
+                                    <i class="fas fa-times me-1"></i>Cancelar
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-1"></i>
+                                    <span th:text="${produto.id != null ? 'Atualizar' : 'Salvar'}"></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div th:replace="fragments/layout :: scripts"></div>
+</body>
+</html>
+

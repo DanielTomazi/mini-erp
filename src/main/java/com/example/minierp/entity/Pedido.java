@@ -2,6 +2,7 @@ package com.example.minierp.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -29,6 +30,9 @@ public class Pedido {
 
     @Column(name = "valor_total", precision = 10, scale = 2)
     private BigDecimal valorTotal;
+
+    @Size(max = 500, message = "Observações devem ter no máximo 500 caracteres")
+    private String observacoes;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ItemPedido> itens = new ArrayList<>();
@@ -78,6 +82,9 @@ public class Pedido {
 
     public BigDecimal getValorTotal() { return valorTotal; }
     public void setValorTotal(BigDecimal valorTotal) { this.valorTotal = valorTotal; }
+
+    public String getObservacoes() { return observacoes; }
+    public void setObservacoes(String observacoes) { this.observacoes = observacoes; }
 
     public List<ItemPedido> getItens() { return itens; }
     public void setItens(List<ItemPedido> itens) { this.itens = itens; }

@@ -37,6 +37,9 @@ public class Produto {
     @Column(name = "estoque_minimo")
     private Integer estoqueMinimo = 0;
 
+    @Size(max = 50, message = "Categoria deve ter no máximo 50 caracteres")
+    private String categoria;
+
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
@@ -83,6 +86,9 @@ public class Produto {
 
     public Integer getEstoqueMinimo() { return estoqueMinimo; }
     public void setEstoqueMinimo(Integer estoqueMinimo) { this.estoqueMinimo = estoqueMinimo; }
+
+    public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
 
     public LocalDateTime getDataCriacao() { return dataCriacao; }
     public void setDataCriacao(LocalDateTime dataCriacao) { this.dataCriacao = dataCriacao; }

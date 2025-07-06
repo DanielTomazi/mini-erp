@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Dashboard - Mini ERP')">
+</head>
+<body>
+    <nav th:replace="fragments/layout :: navbar"></nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div th:replace="fragments/layout :: sidebar"></div>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">
+                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                    </h1>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-4">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body text-center">
+                                <i class="fas fa-users fa-3x mb-3"></i>
+                                <h3>--</h3>
+                                <p>Total de Clientes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card bg-success text-white">
+                            <div class="card-body text-center">
+                                <i class="fas fa-box fa-3x mb-3"></i>
+                                <h3>--</h3>
+                                <p>Total de Produtos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card bg-warning text-white">
+                            <div class="card-body text-center">
+                                <i class="fas fa-shopping-cart fa-3x mb-3"></i>
+                                <h3>--</h3>
+                                <p>Total de Pedidos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card bg-info text-white">
+                            <div class="card-body text-center">
+                                <i class="fas fa-dollar-sign fa-3x mb-3"></i>
+                                <h3>R$ --</h3>
+                                <p>Faturamento Total</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="fas fa-chart-line me-2"></i>Ações Rápidas
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <a href="/clientes/novo" class="btn btn-primary btn-lg w-100 mb-3">
+                                            <i class="fas fa-user-plus me-2"></i>Novo Cliente
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href="/produtos/novo" class="btn btn-success btn-lg w-100 mb-3">
+                                            <i class="fas fa-plus me-2"></i>Novo Produto
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href="/pedidos/novo" class="btn btn-warning btn-lg w-100 mb-3">
+                                            <i class="fas fa-cart-plus me-2"></i>Novo Pedido
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div th:replace="fragments/layout :: scripts"></div>
+</body>
+</html>
+

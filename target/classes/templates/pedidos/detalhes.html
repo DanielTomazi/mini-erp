@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Detalhes do Pedido - Mini ERP')">
+</head>
+<body>
+    <nav th:replace="fragments/layout :: navbar"></nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div th:replace="fragments/layout :: sidebar"></div>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">
+                        <i class="fas fa-eye me-2"></i>Pedido #<span th:text="${pedido.id}"></span>
+                    </h1>
+                    <a href="/pedidos" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-1"></i>Voltar
+                    </a>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="fas fa-info-circle me-2"></i>Informações do Pedido
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>Cliente:</strong> <span th:text="${pedido.cliente.nome}"></span></p>
+                                        <p><strong>Email:</strong> <span th:text="${pedido.cliente.email}"></span></p>
+                                        <p><strong>Telefone:</strong> <span th:text="${pedido.cliente.telefone}"></span></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Data do Pedido:</strong>
+                                           <span th:text="${#temporals.format(pedido.dataPedido, 'dd/MM/yyyy HH:mm')}"></span>
+                                        </p>
+                                        <p><strong>Status:</strong>
+                                            <span th:switch="${pedido.status}">
+                                                <span th:case="'PENDENTE'" class="badge bg-warning">Pendente</span>
+                                                <span th:case="'CONFIRMADO'" class="badge bg-info">Confirmado</span>
+                                                <span th:case="'ENVIADO'" class="badge bg-primary">Enviado</span>
+                                                <span th:case="'ENTREGUE'" class="badge bg-success">Entregue</span>
+                                                <span th:case="'CANCELADO'" class="badge bg-danger">Cancelado</span>
+                                            </span>
+                                        </p>
+                                        <p th:if="${pedido.observacoes}">
+                                            <strong>Observações:</strong> <span th:text="${pedido.observacoes}"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="fas fa-list me-2"></i>Itens do Pedido
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Produto</th>
+                                                <th>Quantidade</th>
+                                                <th>Preço Unitário</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="item : ${pedido.itens}">
+                                                <td th:text="${item.produto.nome}"></td>
+                                                <td th:text="${item.quantidade}"></td>
+                                                <td>
+                                                    R$ <span th:text="${#numbers.formatDecimal(item.precoUnitario, 0, 'COMMA', 2, 'POINT')}"></span>
+                                                </td>
+                                                <td>
+                                                    <strong>R$ <span th:text="${#numbers.formatDecimal(item.quantidade * item.precoUnitario, 0, 'COMMA', 2, 'POINT')}"></span></strong>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="fas fa-calculator me-2"></i>Resumo Financeiro
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span>Total do Pedido:</span>
+                                    <span class="h4 text-success">
+                                        R$ <span th:text="${#numbers.formatDecimal(pedido.valorTotal, 0, 'COMMA', 2, 'POINT')}"></span>
+                                    </span>
+                                </div>
+
+                                <hr>
+
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-primary" onclick="window.print()">
+                                        <i class="fas fa-print me-1"></i>Imprimir Pedido
+                                    </button>
+
+                                    <form th:action="@{/pedidos/{id}/deletar(id=${pedido.id})}"
+                                          method="post"
+                                          onsubmit="return confirm('Tem certeza que deseja deletar este pedido?');">
+                                        <button type="submit" class="btn btn-outline-danger w-100">
+                                            <i class="fas fa-trash me-1"></i>Deletar Pedido
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <h6 class="card-title mb-0">
+                                    <i class="fas fa-user me-2"></i>Dados do Cliente
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <p class="mb-1"><strong th:text="${pedido.cliente.nome}"></strong></p>
+                                <p class="mb-1 text-muted" th:text="${pedido.cliente.email}"></p>
+                                <p class="mb-1 text-muted" th:text="${pedido.cliente.telefone}"></p>
+                                <p class="mb-0 text-muted" th:text="${pedido.cliente.cpf}"></p>
+                                <hr>
+                                <p class="mb-0 small" th:text="${pedido.cliente.endereco}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div th:replace="fragments/layout :: scripts"></div>
+</body>
+</html>
+

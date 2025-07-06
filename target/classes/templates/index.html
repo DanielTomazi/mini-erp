@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Mini ERP - Sistema de Gestão')">
+</head>
+<body>
+    <nav th:replace="fragments/layout :: navbar"></nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div th:replace="fragments/layout :: sidebar"></div>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Bem-vindo ao Mini ERP</h1>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-white bg-primary">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">Clientes</h5>
+                                        <p class="card-text">Gerenciar clientes do sistema</p>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="fas fa-users fa-2x"></i>
+                                    </div>
+                                </div>
+                                <a href="/clientes" class="btn btn-light btn-sm">
+                                    <i class="fas fa-arrow-right me-1"></i>Acessar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-white bg-success">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">Produtos</h5>
+                                        <p class="card-text">Catálogo de produtos</p>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="fas fa-box fa-2x"></i>
+                                    </div>
+                                </div>
+                                <a href="/produtos" class="btn btn-light btn-sm">
+                                    <i class="fas fa-arrow-right me-1"></i>Acessar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-white bg-warning">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">Pedidos</h5>
+                                        <p class="card-text">Controle de pedidos</p>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="fas fa-shopping-cart fa-2x"></i>
+                                    </div>
+                                </div>
+                                <a href="/pedidos" class="btn btn-light btn-sm">
+                                    <i class="fas fa-arrow-right me-1"></i>Acessar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="fas fa-info-circle me-2"></i>Sobre o Sistema
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <p>O Mini ERP é um sistema completo de gestão empresarial que permite:</p>
+                                <ul>
+                                    <li><strong>Gestão de Clientes:</strong> Cadastrar, editar e gerenciar informações de clientes</li>
+                                    <li><strong>Controle de Produtos:</strong> Manter catálogo de produtos com preços e estoque</li>
+                                    <li><strong>Processamento de Pedidos:</strong> Criar e acompanhar pedidos de vendas</li>
+                                </ul>
+                                <p class="mb-0">Use o menu lateral para navegar entre as funcionalidades do sistema.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div th:replace="fragments/layout :: scripts"></div>
+</body>
+</html>
+

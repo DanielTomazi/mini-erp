@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mini ERP</title>
+    <link href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+        }
+        .login-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .login-body {
+            padding: 2rem;
+        }
+        .form-control {
+            border-radius: 25px;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+        }
+        .btn-login {
+            border-radius: 25px;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="login-header">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+            </div>
+            <h2>Mini ERP</h2>
+            <p class="mb-0">Sistema de Gestão Empresarial</p>
+        </div>
+
+        <div class="login-body">
+            <!-- Mensagens de feedback -->
+            <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i><span th:text="${errorMessage}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+
+            <div th:if="${logoutMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle me-2"></i><span th:text="${logoutMessage}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+
+            <form th:action="@{/login}" method="post">
+                <div class="mb-3">
+                    <label for="username" class="form-label">
+                        <i class="fas fa-user me-2"></i>Usuário
+                    </label>
+                    <input type="text" class="form-control" id="username" name="username"
+                           placeholder="Digite seu usuário" required autofocus>
+                </div>
+
+                <div class="mb-4">
+                    <label for="password" class="form-label">
+                        <i class="fas fa-lock me-2"></i>Senha
+                    </label>
+                    <input type="password" class="form-control" id="password" name="password"
+                           placeholder="Digite sua senha" required>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-login">
+                        <i class="fas fa-sign-in-alt me-2"></i>Entrar
+                    </button>
+                </div>
+            </form>
+
+            <hr class="my-4">
+
+            <div class="text-center">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-info-circle me-2"></i>Credenciais de Demonstração
+                        </h6>
+                        <p class="card-text mb-1">
+                            <strong>Usuário:</strong> <code>admin</code>
+                        </p>
+                        <p class="card-text mb-0">
+                            <strong>Senha:</strong> <code>admin123</code>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

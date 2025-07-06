@@ -27,6 +27,12 @@ public class Cliente {
     @Size(max = 20, message = "Telefone deve ter no máximo 20 caracteres")
     private String telefone;
 
+    @Size(max = 14, message = "CPF deve ter no máximo 14 caracteres")
+    private String cpf;
+
+    @Size(max = 300, message = "Endereço deve ter no máximo 300 caracteres")
+    private String endereco;
+
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
@@ -57,6 +63,12 @@ public class Cliente {
 
     public String getTelefone() { return telefone; }
     public void setTelefone(String telefone) { this.telefone = telefone; }
+
+    public String getCpf() { return cpf; }
+    public void setCpf(String cpf) { this.cpf = cpf; }
+
+    public String getEndereco() { return endereco; }
+    public void setEndereco(String endereco) { this.endereco = endereco; }
 
     public LocalDateTime getDataCriacao() { return dataCriacao; }
     public void setDataCriacao(LocalDateTime dataCriacao) { this.dataCriacao = dataCriacao; }

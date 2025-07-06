@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Mini ERP</title>
+    <link href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            min-height: 100vh;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .nav-link {
+            color: #333;
+        }
+        .nav-link:hover {
+            background-color: #f8f9fa;
+        }
+        .card {
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+    </style>
+</head>
+
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-cube me-2"></i>Mini ERP
+        </a>
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link text-white" href="/logout">
+                <i class="fas fa-sign-out-alt me-1"></i>Sair
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div th:fragment="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">
+                    <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/clientes">
+                    <i class="fas fa-users me-2"></i>Clientes
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/produtos">
+                    <i class="fas fa-box me-2"></i>Produtos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/pedidos">
+                    <i class="fas fa-shopping-cart me-2"></i>Pedidos
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script th:fragment="scripts">
+    <script src="/webjars/jquery/3.7.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</script>
+</html>

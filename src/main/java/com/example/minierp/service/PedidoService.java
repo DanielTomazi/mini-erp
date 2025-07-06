@@ -103,4 +103,38 @@ public class PedidoService {
     public List<Pedido> buscarPorPeriodo(LocalDateTime dataInicio, LocalDateTime dataFim) {
         return pedidoRepository.findByDataPedidoBetween(dataInicio, dataFim);
     }
+
+    public Pedido salvar(Pedido pedido) {
+        if (pedido.getDataPedido() == null) {
+            pedido.setDataPedido(LocalDateTime.now());
+        }
+
+        if (pedido.getStatus() == null) {
+            pedido.setStatus(StatusPedido.PENDENTE);
+        }
+
+        // Calcular valor total baseado nos itens
+        if (pedido.getItens() != null && !pedido.getItens().isEmpty()) {
+            // Usar BigDecimal em vez de double
+            pedido.calcularValorTotal();
+        } else {
+            pedido.setValorTotal(java.math.BigDecimal.ZERO);
+        }
+
+        return pedidoRepository.save(pedido);
+    }
+
+    public void deletar(Long id) {
+        Pedido pedido = buscarPorId(id);
+
+        // Se o pedido foi confirmado, reverter estoque
+        if (pedido.getStatus() == StatusPedido.CONFIRMADO ||
+            pedido.getStatus() == StatusPedido.PROCESSANDO) {
+            for (ItemPedido item : pedido.getItens()) {
+                produtoService.atualizarEstoque(item.getProduto().getId(), item.getQuantidade());
+            }
+        }
+
+        pedidoRepository.deleteById(id);
+    }
 }
