@@ -2,7 +2,7 @@
 
 Um sistema Mini ERP desenvolvido com Java, Spring Boot, PostgreSQL e Docker para gestão de clientes, produtos e pedidos.
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Java 17**
 - **Spring Boot 3.2.0**
@@ -13,7 +13,7 @@ Um sistema Mini ERP desenvolvido com Java, Spring Boot, PostgreSQL e Docker para
 - **JUnit 5 & Mockito** (para testes)
 - **Maven** (gerenciamento de dependências)
 
-## 📋 Funcionalidades
+## Funcionalidades
 
 ### Gestão de Clientes
 - Cadastro, consulta, atualização e exclusão de clientes
@@ -33,7 +33,7 @@ Um sistema Mini ERP desenvolvido com Java, Spring Boot, PostgreSQL e Docker para
 - Cálculo automático de valores
 - Atualização automática de estoque
 
-## 🛠️ Como Executar
+## Como Executar
 
 ### Pré-requisitos
 - Docker e Docker Compose instalados
@@ -69,7 +69,7 @@ A aplicação estará disponível em: `http://localhost:8080/mini-erp`
 mvn spring-boot:run
 ```
 
-## 📊 API Endpoints
+## API Endpoints
 
 ### Autenticação
 - **Usuário:** admin
@@ -103,13 +103,13 @@ mvn spring-boot:run
 - `PUT /api/pedidos/{id}/confirmar` - Confirmar pedido
 - `PUT /api/pedidos/{id}/cancelar` - Cancelar pedido
 
-## 🧪 Executando Testes
+## Executando Testes
 
 ```bash
 mvn test
 ```
 
-## 📄 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 src/
@@ -126,13 +126,13 @@ src/
     └── java/                # Testes unitários
 ```
 
-## 🔒 Segurança
+## Segurança
 
 A aplicação utiliza Spring Security com autenticação básica HTTP. Para acessar as APIs, use:
 - **Username:** admin
 - **Password:** admin123
 
-## 📝 Exemplos de Uso
+## Exemplos de Uso
 
 ### Criar um Cliente
 ```bash
@@ -160,7 +160,7 @@ curl -X POST http://localhost:8080/mini-erp/api/produtos \
   }'
 ```
 
-## 🐳 Docker
+## Docker
 
 O projeto inclui:
 - `Dockerfile` para a aplicação Spring Boot
